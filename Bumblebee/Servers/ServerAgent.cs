@@ -263,15 +263,16 @@ namespace Bumblebee.Servers
             return string.Format("({0}){1}", this.Available ? 1 : 0, Uri);
         }
 
-        public ServerAgent AddUrl(string url, string hashPattern, int weight, int maxRps)
+
+        public ServerAgent AddUrl(string url, string hashPattern, string prefixUrl, int weight, int maxRps)
         {
-            var route = Gateway.SetRoute(url, hashPattern).AddServer(this.Uri.ToString(), weight, maxRps);
+            var route = Gateway.SetRoute(url, prefixUrl, hashPattern).AddServer(this.Uri.ToString(), weight, maxRps);
             return this;
         }
 
-        public ServerAgent AddUrl(string url, int weight, int maxRps)
+        public ServerAgent AddUrl(string url, string prefixUrl, int weight, int maxRps)
         {
-            return AddUrl(url, null, weight, maxRps);
+            return AddUrl(url, null, prefixUrl, weight, maxRps);
         }
     }
 }

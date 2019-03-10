@@ -142,9 +142,9 @@ namespace Bumblebee
             return this;
         }
 
-        public Routes.UrlRoute SetRoute(string url, string hashPattern = null)
+        public Routes.UrlRoute SetRoute(string url,string prefixUrl = null, string hashPattern = null)
         {
-            var result = Routes.NewOrGet(url, hashPattern);
+            var result = Routes.NewOrGet(url, prefixUrl,hashPattern);
             return result;
         }
 

@@ -12,11 +12,14 @@ namespace Bumblebee.Routes
 {
     public class UrlRoute
     {
-        public UrlRoute(Gateway gateway, string url)
+        public UrlRoute(Gateway gateway, string url, string prefixUrl)
         {
             Gateway = gateway;
             Filters = new List<IRequestFilter>();
             Url = url;
+            //eddy add
+            PrefixUrl = prefixUrl;
+            //end
             UrlPattern = url;
 
             var values = url.Split('|', StringSplitOptions.RemoveEmptyEntries);
@@ -74,6 +77,10 @@ namespace Bumblebee.Routes
         }
 
         public string Url { get; private set; }
+
+        //eddy
+        public string PrefixUrl { get; private set; }
+        //end
 
         public string UrlPattern { get; set; }
 

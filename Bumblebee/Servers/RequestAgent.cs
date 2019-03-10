@@ -258,6 +258,12 @@ namespace Bumblebee.Servers
         public void Execute()
         {
             var request = Request;
+            if (!string.IsNullOrEmpty(this.UrlRoute.PrefixUrl))
+            {
+                System.Text.RegularExpressions.Regex r = new System.Text.RegularExpressions.Regex($"/{this.UrlRoute.PrefixUrl.Trim('/')}", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+                request.Url = r.Replace(request.Url, "", 1, 0);
+                request.BaseUrl = r.Replace(request.BaseUrl, "", 1, 0);
+            }
             var response = Response;
             Status = RequestStatus.Requesting;
             mClientAgent.Client.Connect();

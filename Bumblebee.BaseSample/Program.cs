@@ -16,8 +16,8 @@ namespace Bumblebee.BaseSample
                 h.LogToConsole = true;
 
             });
-            g.SetServer("http://192.168.2.19:8080").AddUrl("*", 0, 0);
-            g.SetServer("http://192.168.2.19:9090").AddUrl("/home.*", 0, 0);
+            g.SetServer("http://192.168.2.19:8080").AddUrl("*","", 0, 0);
+            g.SetServer("http://192.168.2.19:9090").AddUrl("/home.*","home", 0, 0);
             //g.Requesting += (o, e) =>
             //{
             //    Console.WriteLine("Requesting");

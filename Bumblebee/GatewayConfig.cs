@@ -70,6 +70,9 @@ namespace Bumblebee
             public List<string> Filters { get; set; } = new List<string>();
 
             public string Url { get; set; }
+            //eddy
+            public string PrefixUrl { get; set; }
+            //end
 
             public string HashPattern { get; set; }
 
@@ -85,6 +88,7 @@ namespace Bumblebee
             public void From(Routes.UrlRoute urlRoute)
             {
                 Url = urlRoute.Url;
+                PrefixUrl = urlRoute.PrefixUrl;
                 HashPattern = urlRoute.HashPattern;
                 foreach (var filter in urlRoute.FilterNames)
                 {
@@ -99,7 +103,9 @@ namespace Bumblebee
             public void To(Gateway gateway)
             {
                 gateway.RemoveRoute(Url);
-                var result = gateway.SetRoute(Url, HashPattern);
+                //eddy modify
+                var result = gateway.SetRoute(Url,PrefixUrl, HashPattern);
+                //end
                 foreach (var filter in Filters)
                 {
                     result.SetFilter(filter);

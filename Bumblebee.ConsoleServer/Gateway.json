@@ -1,7 +1,7 @@
 ﻿{
   "Servers": [
     {
-      "Uri": "http://192.168.2.19:9090/",
+      "Uri": "http://127.0.0.1:9091/",
       "MaxConnections": 1000
     },
     {
@@ -11,17 +11,18 @@
   ],
   "Urls": [
     {
-      "Url": "*",
+      "Url": "user/*",
+      "PrefixUrl": "User",
       "HashPattern": null,
       "Servers": [
         {
-          "Url": "http://192.168.2.19:9090/",
+          "Url": "http://127.0.0.1:9091/",
           "Weight": 10,
           "MaxRps": 0
         },
         {
           "Url": "http://192.168.2.25:9090/",
-          "Weight": 5,
+          "Weight": 0,
           "MaxRps": 0
         }
       ]

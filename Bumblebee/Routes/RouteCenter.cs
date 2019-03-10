@@ -12,7 +12,7 @@ namespace Bumblebee.Routes
         public RouteCenter(Gateway gateway)
         {
             Gateway = gateway;
-            Default = new UrlRoute(gateway, "*");
+            Default = new UrlRoute(gateway, "*",string.Empty);
         }
 
         private long mVersion;
@@ -152,7 +152,7 @@ namespace Bumblebee.Routes
             System.Threading.Interlocked.Increment(ref mVersion);
         }
 
-        public UrlRoute NewOrGet(string url, string hashPattern = null)
+        public UrlRoute NewOrGet(string url, string prefixUrl = null, string hashPattern = null)
         {
             if (url == "*")
             {
@@ -161,7 +161,7 @@ namespace Bumblebee.Routes
             }
             if (!mUrlRoutes.TryGetValue(url, out UrlRoute item))
             {
-                item = new UrlRoute(Gateway, url);
+                item = new UrlRoute(Gateway, url,prefixUrl);
                 mUrlRoutes[url] = item;
                 UpdateUrlTable();
 
